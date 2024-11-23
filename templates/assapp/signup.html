@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+        }
+        .container-box {
+            width: 85%;
+            height: 85%;
+            display: flex;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .info-section {
+            flex: 1;
+            background: url('{% static "images/environment-new-stems-on-an-old-tree-drvmt0ypijjfcog8.jpg" %}') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .info-section h1 {
+            font-weight: 600;
+            color: #080808;
+            margin-bottom: 1rem;
+        }
+        .info-section h4 {
+            font-weight: 600;
+            color: #f50505;
+            margin-bottom: 1rem;
+        }
+        .info-section p {
+            font-weight: 300;
+            line-height: 1.8;
+            color: #f82804;
+            font-size: 1.1rem;
+        }
+        .form-section {
+            flex: 1;
+            background-color: #1c1c1c;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .form-section h2 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .form-section .form-outline label {
+            font-weight: 400;
+        }
+        .form-section .btn {
+            background-color: #FFD700;
+            border: none;
+        }
+        .form-section .btn:hover {
+            background-color: #FFC107;
+        }
+        @media (max-width: 768px) {
+            .container-box {
+                flex-direction: column;
+                height: auto;
+            }
+            .info-section, .form-section {
+                flex: unset;
+                height: auto;
+            }
+        }
+        .alert {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-box">
+        <!-- Info Section -->
+        <div class="info-section">
+            <h1>Processed Assent Data</h1>
+            <h4>
+                This website is designed to manage processed assent data efficiently. When a request is raised in Greencheck, it is logged here along with detailed information, including customer details and parts data (total parts, matched parts, and unmatched parts). Only matched parts are processed in Greencheck, but both matched and unmatched parts are logged here for better clarity and easy reference.
+            </h4>
+        </div>
+
+        <!-- Login Form Section -->
+        <div class="form-section">
+            <h2 class="fw-bold text-uppercase text-center">Sign Up</h2>
+            <!--<p class="text-white-50 text-center mb-4">Please enter your login and password!</p> -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="typeUsernameX">Username</label>
+                    <input type="text" id="typeUsernameX" class="form-control form-control-lg" placeholder="Enter your username" name="username" required>
+                </div>
+                <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="typePasswordX">Password</label>
+                    <input type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Enter your password" name="password" required>
+                </div>
+                
+                <div class="text-center">
+                    <button class="btn btn-lg px-5" type="submit">Sign up</button>
+                </div>
+            </form>
+            <div class="text-center mt-4">
+                <p class="mb-0">already have an account? <a href="{% url 'login' %}" class="text-white-50 fw-bold">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
